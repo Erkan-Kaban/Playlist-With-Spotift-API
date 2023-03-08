@@ -3,7 +3,7 @@ import './App.css'
 import SearchBar from '../SearchBar/SearchBar'
 import SearchResults from '../SearchResults/SearchResults'
 import PlayList from '../PlayList/PlayList'
-import TrackList from '../TrackList/TrackList'
+// import TrackList from '../TrackList/TrackList'
 
 class App extends React.Component {
   constructor(props) {
@@ -16,8 +16,12 @@ class App extends React.Component {
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
+    this.updatePlayListName = this.updatePlayListName.bind(this);
   }
 
+  updatePlayListName(name) {
+    this.setState({playListName: name})
+  }
   removeTrack(track) {
     let tracks = this.state.playListTracks;
     // how does this work? 
@@ -34,6 +38,7 @@ class App extends React.Component {
     this.setState({ playListTracks: tracks });
 
   }
+
   render() {
     return (
       <div>
@@ -42,7 +47,7 @@ class App extends React.Component {
           <SearchBar />
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
-            <PlayList playListName={this.state.playListName} playListTracks={this.state.playListTracks} onRemove={this.removeTrack} />
+            <PlayList playListName={this.state.playListName} playListTracks={this.state.playListTracks} onRemove={this.removeTrack} onNameChange={this.updatePlayListName} />
           </div>
         </div>
       </div>
