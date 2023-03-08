@@ -17,11 +17,18 @@ class App extends React.Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlayListName = this.updatePlayListName.bind(this);
+    this.savePlayList = this.savePlaylist.bind(this);
+  }
+
+  savePlaylist() {
+    // alert('this method works!')
+    const trackURIs = this.state.playListTracks.map(track => track.uri);
   }
 
   updatePlayListName(name) {
     this.setState({playListName: name})
   }
+
   removeTrack(track) {
     let tracks = this.state.playListTracks;
     // how does this work? 
@@ -47,7 +54,7 @@ class App extends React.Component {
           <SearchBar />
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
-            <PlayList playListName={this.state.playListName} playListTracks={this.state.playListTracks} onRemove={this.removeTrack} onNameChange={this.updatePlayListName} />
+            <PlayList playListName={this.state.playListName} playListTracks={this.state.playListTracks} onRemove={this.removeTrack} onNameChange={this.updatePlayListName} onSave={this.savePlayList} />
           </div>
         </div>
       </div>
